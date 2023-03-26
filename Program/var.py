@@ -4,3 +4,7 @@ FPS = 60
 
 scene = 'edit'
 state = ''
+
+class Font():
+    title = None
+    main = None
