@@ -12,8 +12,12 @@ import sceneplay
 
 def init():
     pygame.init()
-    var.screen = pygame.display.set_mode(const.window_size)
+    var.screen = pygame.display.set_mode(const.window_size, pygame.SRCALPHA)
     pygame.display.set_caption('Image Game Converter')
+    var.Image_Editor.layer['background'] = pygame.Surface(const.canvas_size, pygame.SRCALPHA)
+    var.Image_Editor.layer['object'] = pygame.Surface(const.canvas_size, pygame.SRCALPHA)
+    var.Image_Editor.full_image = pygame.Surface(const.canvas_size, pygame.SRCALPHA)
+    var.game_output = pygame.Surface(const.canvas_size, pygame.SRCALPHA)
     var.clock = pygame.time.Clock()
 
     load_font()
