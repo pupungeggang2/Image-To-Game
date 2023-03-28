@@ -3,6 +3,8 @@ import pygame
 import var
 import const
 
+import draw
+
 def loop():
     display()
 
@@ -17,4 +19,10 @@ def mouse_up(x, y, button):
     pass
 
 def mouse_motion(x, y):
+    pass
+
+def key_down(key):
+    pass
+
+def key_up(key):
     pass

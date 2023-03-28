@@ -29,7 +29,13 @@ def load_font():
     var.Font.title = pygame.font.SysFont(None, 24)
 
 def load_image():
-    pass
+    asset.Img.Icon.new = pygame.image.load('Image/Icon/New.png')
+    asset.Img.Icon.save = pygame.image.load('Image/Icon/Save.png')
+    asset.Img.Icon.image_save = pygame.image.load('Image/Icon/ImageSave.png')
+    asset.Img.Icon.brush = pygame.image.load('Image/Icon/Brush.png')
+    asset.Img.Icon.erase = pygame.image.load('Image/Icon/Erase.png')
+    asset.Img.Icon.convert = pygame.image.load('Image/Icon/Convert.png')
+    asset.Img.Icon.play = pygame.image.load('Image/Icon/Play.png')
 
 def main():
     while True:
@@ -56,6 +62,9 @@ def input_handle():
             if var.scene == 'edit':
                 sceneedit.mouse_down(mouse[0], mouse[1], button)
 
+            elif var.scene == 'play':
+                sceneplay.mouse_down(mouse[0], mouse[1], button)
+
         elif event.type == pygame.MOUSEBUTTONUP:
             mouse = pygame.mouse.get_pos()
             button = event.button
@@ -63,11 +72,35 @@ def input_handle():
             if var.scene == 'edit':
                 sceneedit.mouse_up(mouse[0], mouse[1], button)
 
+            if var.scene == 'play':
+                sceneedit.mouse_up(mouse[0], mouse[1], button)
+
         elif event.type == pygame.MOUSEMOTION:
             mouse = pygame.mouse.get_pos()
 
             if var.scene == 'edit':
                 sceneedit.mouse_motion(mouse[0], mouse[1])
+
+            elif var.scene == 'play':
+                sceneedit.mouse_motion(mouse[0], mouse[1])
+
+        elif event.type == pygame.KEYDOWN:
+            key = event.key
+
+            if var.scene == 'edit':
+                sceneedit.key_down(key)
+
+            elif var.scene == 'play':
+                sceneedit.key_down(key)
+
+        elif event.type == pygame.KEYUP:
+            key = event.key
+
+            if var.scene == 'edit':
+                sceneedit.key_up(key)
+
+            elif var.scene == 'play':
+                sceneedit.key_up(key)
 
 init()
 main()
