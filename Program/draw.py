@@ -21,6 +21,8 @@ def draw_message_bar():
 
 def draw_left_bar():
     pygame.draw.rect(var.screen, const.Color.black, UI.Left_Bar.rect, 2)
+    pygame.draw.rect(var.screen, const.Color.black, UI.Left_Bar.brush_point_rect, 2)
+    pygame.draw.rect(var.screen, const.Color.black, UI.Left_Bar.brush_size_slider, 2)
 
 def draw_game_screen_edit():
     pygame.draw.rect(var.screen, const.Color.black, UI.Game_Screen_Edit.rect, 2)

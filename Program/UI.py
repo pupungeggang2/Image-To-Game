@@ -14,6 +14,10 @@ class Message_Bar():
 
 class Left_Bar():
     rect = [0, 80, 480, 600]
+    brush_point_rect = [0, 80, 40, 40]
+    brush_point = [20, 100]
+    brush_size_slider = [60, 90, 360, 20]
+    brush_size_text = [420, 8]
 
 class Game_Screen_Edit():
     rect = [480, 80, 800, 600]
