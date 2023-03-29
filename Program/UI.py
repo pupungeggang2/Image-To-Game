@@ -16,8 +16,19 @@ class Left_Bar():
     rect = [0, 80, 480, 600]
     brush_point_rect = [0, 80, 40, 40]
     brush_point = [20, 100]
-    brush_size_slider = [60, 90, 360, 20]
-    brush_size_text = [420, 8]
+    brush_size_slider = [60, 100, 400, 100]
+    brush_size_text = [440, 90]
+
+    layer_object_rect = [0, 600, 480, 40]
+    layer_object_select = [0, 600, 360, 40]
+    layer_object_text = [8, 610]
+    layer_object_erase = [400, 600, 40, 40]
+    layer_object_load = [440, 600, 40, 40]
+    layer_background_rect = [0, 640, 480, 40]
+    layer_background_select = [0, 640, 360, 40]
+    layer_background_text = [8, 650]
+    layer_background_erase = [400, 640, 40, 40]
+    layer_background_load = [440, 640, 440, 40]
 
 class Game_Screen_Edit():
     rect = [480, 80, 800, 600]

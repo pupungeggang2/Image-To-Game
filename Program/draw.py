@@ -16,13 +16,39 @@ def draw_upper_bar():
     var.screen.blit(asset.Img.Icon.convert, UI.Upper_Bar.convert)
     var.screen.blit(asset.Img.Icon.play, UI.Upper_Bar.play)
 
+    if var.Image_Editor.brush_mode == 'draw':
+        pygame.draw.rect(var.screen, const.Color.green, UI.Upper_Bar.brush, 2)
+
+    elif var.Image_Editor.brush_mode == 'erase':
+        pygame.draw.rect(var.screen, const.Color.green, UI.Upper_Bar.erase, 2)
+
 def draw_message_bar():
     pygame.draw.rect(var.screen, const.Color.black, UI.Message_Bar.rect, 2)
 
 def draw_left_bar():
     pygame.draw.rect(var.screen, const.Color.black, UI.Left_Bar.rect, 2)
+
+    # Brush size change
     pygame.draw.rect(var.screen, const.Color.black, UI.Left_Bar.brush_point_rect, 2)
-    pygame.draw.rect(var.screen, const.Color.black, UI.Left_Bar.brush_size_slider, 2)
+    pygame.draw.circle(var.screen, const.Color.black, UI.Left_Bar.brush_point, var.Image_Editor.brush_size / 2)
+    pygame.draw.line(var.screen, const.Color.black, UI.Left_Bar.brush_size_slider[:2], UI.Left_Bar.brush_size_slider[2:], 10)
+    var.screen.blit(var.Font.main.render(str(var.Image_Editor.brush_size), False, const.Color.black), UI.Left_Bar.brush_size_text)
+
+    # Layer
+    pygame.draw.rect(var.screen, const.Color.black, UI.Left_Bar.layer_object_rect, 2)
+    var.screen.blit(var.Font.main.render('Object', False, const.Color.black), UI.Left_Bar.layer_object_text)
+    var.screen.blit(asset.Img.Icon.erase, UI.Left_Bar.layer_object_erase)
+    var.screen.blit(asset.Img.Icon.layer_load, UI.Left_Bar.layer_object_load)
+    pygame.draw.rect(var.screen, const.Color.black, UI.Left_Bar.layer_background_rect, 2)
+    var.screen.blit(var.Font.main.render('Background', False, const.Color.black), UI.Left_Bar.layer_background_text)
+    var.screen.blit(asset.Img.Icon.erase, UI.Left_Bar.layer_background_erase)
+    var.screen.blit(asset.Img.Icon.layer_load, UI.Left_Bar.layer_object_load)
+
+    if var.Image_Editor.layer_selected == 'background':
+        pygame.draw.rect(var.screen, const.Color.green, UI.Left_Bar.layer_background_rect, 2)
+
+    if var.Image_Editor.layer_selected == 'object':
+        pygame.draw.rect(var.screen, const.Color.green, UI.Left_Bar.layer_object_rect, 2)
 
 def draw_game_screen_edit():
     pygame.draw.rect(var.screen, const.Color.black, UI.Game_Screen_Edit.rect, 2)

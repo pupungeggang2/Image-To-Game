@@ -25,13 +25,14 @@ def init():
 
 def load_font():
     pygame.font.init()
-    var.Font.main = pygame.font.SysFont(None, 32)
-    var.Font.title = pygame.font.SysFont(None, 24)
+    var.Font.title = pygame.font.Font('neodgm.ttf', 32)
+    var.Font.main = pygame.font.Font('neodgm.ttf', 24)
 
 def load_image():
     asset.Img.Icon.new = pygame.image.load('Image/Icon/New.png')
     asset.Img.Icon.save = pygame.image.load('Image/Icon/Save.png')
     asset.Img.Icon.image_save = pygame.image.load('Image/Icon/ImageSave.png')
+    asset.Img.Icon.layer_load = pygame.image.load('Image/Icon/LayerLoad.png')
     asset.Img.Icon.brush = pygame.image.load('Image/Icon/Brush.png')
     asset.Img.Icon.erase = pygame.image.load('Image/Icon/Erase.png')
     asset.Img.Icon.convert = pygame.image.load('Image/Icon/Convert.png')

@@ -32,6 +32,27 @@ def mouse_up(x, y, button):
     if button == 1:
         var.Image_Editor.brush_pressed = False
 
+        if var.state == '':
+            # Top bar
+            if physics.point_inside_rect_array(x, y, UI.Upper_Bar.brush):
+                var.Image_Editor.brush_mode = 'draw'
+
+            elif physics.point_inside_rect_array(x, y, UI.Upper_Bar.erase):
+                var.Image_Editor.brush_mode = 'erase'
+
+            # Left bar
+            if physics.point_inside_rect_array(x, y, UI.Left_Bar.layer_background_select):
+                var.Image_Editor.layer_selected = 'background'
+
+            elif physics.point_inside_rect_array(x, y, UI.Left_Bar.layer_object_select):
+                var.Image_Editor.layer_selected = 'object'
+
+        elif var.state == 'save':
+            pass
+
+        elif var.state == 'load':
+            pass
+
 def mouse_motion(x, y):
     if var.state == '':
         if var.Image_Editor.canvas_mode == 'draw':
