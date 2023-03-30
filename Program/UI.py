@@ -36,3 +36,19 @@ class Game_Screen_Edit():
 class Lower_Bar():
     rect = [0, 680, 1280, 40]
     text_status = [4, 684]
+
+class Save_Window():
+    rect = [160, 80, 960, 560]
+    close_button = [1080, 80, 40, 40]
+    title_bar = [160, 80, 960, 40]
+    title_text = [168, 84]
+    directory_bar = [160, 120, 960, 40]
+    directory_text = [168, 128]
+    lower_bar = [160, 600, 960, 40]
+    lower_text_rect = [160, 600, 840, 40]
+    file_name = [168, 608]
+    save_button = [1000, 600, 120, 40]
+    save_text = [1008, 604]
+
+class Load_Window():
+    rect = [160, 80, 960, 480]

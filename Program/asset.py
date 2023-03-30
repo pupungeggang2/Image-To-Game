@@ -4,6 +4,8 @@ class Img():
         save = None
         image_save = None
         layer_load = None
+        close = None
+        upper_directory = None
         
         undo = None
         redo = None

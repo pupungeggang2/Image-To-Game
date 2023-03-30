@@ -1,3 +1,4 @@
+import os
 import var
 import const
 import pygame
@@ -7,9 +8,25 @@ def load_image_drawn():
 
 def save_image_drawn(image_name):
     var.Image_Editor.full_image.fill(const.Color.erase)
-    var.Image_Editor.full_image.bilt(var.Image_Editor.layer['background'])
-    var.Image_Editor.full_image.bilt(var.Image_Editor.layer['object'])
+    var.Image_Editor.full_image.blit(var.Image_Editor.layer['background'], [0, 0])
+    var.Image_Editor.full_image.blit(var.Image_Editor.layer['object'], [0, 0])
 
-    pygame.image.save(var.Image_Editor.full_image, './Drawing/' + image_name + '_full.png')
-    pygame.image.save(var.Image_Editor.layer['background'], './Drawing/' + image_name + '_background.png')
-    pygame.image.save(var.Image_Editor.layer['object'], './Drawing/' + image_name + '_object.png')
+    pygame.image.save(var.Image_Editor.full_image, './Drawing/' + var.Save.current_dir + image_name + '_full.png')
+    pygame.image.save(var.Image_Editor.layer['background'], './Drawing/' + var.Save.current_dir + image_name + '_background.png')
+    pygame.image.save(var.Image_Editor.layer['object'], './Drawing/'+ var.Save.current_dir + image_name + '_object.png')
+
+def save_window_init():
+    var.Save.current_dir = ''
+    var.Save.current_dir_files = os.listdir('./Drawing/' + var.Save.current_dir)
+    var.Save.file_name_write = ''
+    var.Save.file_name_mode = False
+
+def go_upper_directory():
+    directory_split = var.Save.current_dir.split('/')
+
+    if len(directory_split) <= 0:
+        var.Save.current_dir = ''
+
+    else:
+        directory_split = directory_split[:-1]
+        var.Save.current_dir = '/'.join(map(str, directory_split))

@@ -42,7 +42,7 @@ def draw_left_bar():
     pygame.draw.rect(var.screen, const.Color.black, UI.Left_Bar.layer_background_rect, 2)
     var.screen.blit(var.Font.main.render('Background', False, const.Color.black), UI.Left_Bar.layer_background_text)
     var.screen.blit(asset.Img.Icon.erase, UI.Left_Bar.layer_background_erase)
-    var.screen.blit(asset.Img.Icon.layer_load, UI.Left_Bar.layer_object_load)
+    var.screen.blit(asset.Img.Icon.layer_load, UI.Left_Bar.layer_background_load)
 
     if var.Image_Editor.layer_selected == 'background':
         pygame.draw.rect(var.screen, const.Color.green, UI.Left_Bar.layer_background_rect, 2)
@@ -65,3 +65,30 @@ def draw_game_screen_edit():
 
 def draw_lower_bar():
     pygame.draw.rect(var.screen, const.Color.black, UI.Lower_Bar.rect, 2)
+
+def draw_save_image_window():
+    pygame.draw.rect(var.screen, const.Color.white, UI.Save_Window.rect)
+
+    # Upper Bar
+    pygame.draw.rect(var.screen, const.Color.black, UI.Save_Window.rect, 2)
+    pygame.draw.rect(var.screen, const.Color.black, UI.Save_Window.title_bar, 2)
+    var.screen.blit(asset.Img.Icon.close, UI.Save_Window.close_button)
+    var.screen.blit(var.Font.title.render('Save', False, const.Color.black), UI.Save_Window.title_text)
+
+    # Directory Bar
+    pygame.draw.rect(var.screen, const.Color.black, UI.Save_Window.directory_bar, 2)
+    var.screen.blit(var.Font.main.render('.../dir/Drawing/' + var.Save.current_dir, False, const.Color.black), UI.Save_Window.directory_text)
+
+    # Lower Bar
+    pygame.draw.rect(var.screen, const.Color.black, UI.Save_Window.lower_text_rect, 2)
+    
+    if var.Save.file_name_mode == True:
+        pygame.draw.rect(var.screen, const.Color.green, UI.Save_Window.lower_text_rect, 2)
+
+    var.screen.blit(var.Font.main.render(var.Save.file_name_write, False, const.Color.black), UI.Save_Window.file_name)
+
+    pygame.draw.rect(var.screen, const.Color.black, UI.Save_Window.save_button, 2)
+    var.screen.blit(var.Font.title.render('Save', False, const.Color.black), UI.Save_Window.save_text)
+
+def draw_load_window():
+    pass

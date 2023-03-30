@@ -21,6 +21,15 @@ class Image_Editor():
     layer_visible = {'background' : True, 'object' : True}
     full_image = None
 
+class Game():
+    data_map = {}
+
+class Save():
+    current_dir = ''
+    current_dir_files = []
+    file_name_write = ''
+    file_name_mode = False
+
 class Font():
     title = None
     main = None
