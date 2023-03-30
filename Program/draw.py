@@ -33,6 +33,8 @@ def draw_left_bar():
     pygame.draw.circle(var.screen, const.Color.black, UI.Left_Bar.brush_point, var.Image_Editor.brush_size / 2)
     pygame.draw.line(var.screen, const.Color.black, UI.Left_Bar.brush_size_slider[:2], UI.Left_Bar.brush_size_slider[2:], 10)
     var.screen.blit(var.Font.main.render(str(var.Image_Editor.brush_size), False, const.Color.black), UI.Left_Bar.brush_size_text)
+    pygame.draw.circle(var.screen, const.Color.white, [UI.Left_Bar.brush_size_slider[0] + 300 / 19 * (var.Image_Editor.brush_size - 1), UI.Left_Bar.brush_size_slider[1]], 10)
+    pygame.draw.circle(var.screen, const.Color.black, [UI.Left_Bar.brush_size_slider[0] + 300 / 19 * (var.Image_Editor.brush_size - 1), UI.Left_Bar.brush_size_slider[1]], 10, 2)
 
     # Layer
     pygame.draw.rect(var.screen, const.Color.black, UI.Left_Bar.layer_object_rect, 2)
@@ -43,6 +45,10 @@ def draw_left_bar():
     var.screen.blit(var.Font.main.render('Background', False, const.Color.black), UI.Left_Bar.layer_background_text)
     var.screen.blit(asset.Img.Icon.erase, UI.Left_Bar.layer_background_erase)
     var.screen.blit(asset.Img.Icon.layer_load, UI.Left_Bar.layer_background_load)
+    pygame.draw.rect(var.screen, const.Color.black, UI.Left_Bar.layer_player_rect, 2)
+    var.screen.blit(var.Font.main.render('Player', False, const.Color.black), UI.Left_Bar.layer_player_text)
+    pygame.draw.rect(var.screen, const.Color.black, UI.Left_Bar.layer_white_rect, 2)
+    var.screen.blit(var.Font.main.render('White', False, const.Color.black), UI.Left_Bar.layer_white_text)
 
     if var.Image_Editor.layer_selected == 'background':
         pygame.draw.rect(var.screen, const.Color.green, UI.Left_Bar.layer_background_rect, 2)
