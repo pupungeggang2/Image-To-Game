@@ -35,6 +35,8 @@ def load_image():
     asset.Img.Icon.layer_load = pygame.image.load('Image/Icon/LayerLoad.png')
     asset.Img.Icon.close = pygame.image.load('Image/Icon/Close.png')
     asset.Img.Icon.upper_directory = pygame.image.load('Image/Icon/UpperDirectory.png')
+    asset.Img.Icon.visible = pygame.image.load('Image/Icon/Visible.png')
+    asset.Img.Icon.invisible = pygame.image.load('Image/Icon/Invisible.png')
 
     asset.Img.Icon.brush = pygame.image.load('Image/Icon/Brush.png')
     asset.Img.Icon.erase = pygame.image.load('Image/Icon/Erase.png')

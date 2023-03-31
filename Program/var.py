@@ -18,7 +18,7 @@ class Image_Editor():
     eraser_size = 10
     layer_selected = 'background'
     layer = {'background' : None, 'object' : None}
-    layer_visible = {'background' : True, 'object' : True}
+    layer_visible = {'background' : True, 'object' : True, 'white' : True, 'player' : False}
     full_image = None
 
 class Game():

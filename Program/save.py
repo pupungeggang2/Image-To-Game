@@ -8,8 +8,15 @@ def load_image_drawn():
 
 def save_image_drawn(image_name):
     var.Image_Editor.full_image.fill(const.Color.erase)
-    var.Image_Editor.full_image.blit(var.Image_Editor.layer['background'], [0, 0])
-    var.Image_Editor.full_image.blit(var.Image_Editor.layer['object'], [0, 0])
+    
+    if var.Image_Editor.layer_visible['white'] == True:
+        var.Image_Editor.full_image.fill(const.Color.white)
+
+    if var.Image_Editor.layer_visible['background'] == True:
+        var.Image_Editor.full_image.blit(var.Image_Editor.layer['background'], [0, 0])
+
+    if var.Image_Editor.layer_visible['object'] == True:
+        var.Image_Editor.full_image.blit(var.Image_Editor.layer['object'], [0, 0])
 
     pygame.image.save(var.Image_Editor.full_image, './Drawing/' + var.Save.current_dir + image_name + '_full.png')
     pygame.image.save(var.Image_Editor.layer['background'], './Drawing/' + var.Save.current_dir + image_name + '_background.png')

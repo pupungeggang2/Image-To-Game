@@ -6,6 +6,8 @@ class Img():
         layer_load = None
         close = None
         upper_directory = None
+        visible = None
+        invisible = None
         
         undo = None
         redo = None
