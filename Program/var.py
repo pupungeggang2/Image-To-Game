@@ -24,6 +24,9 @@ class Image_Editor():
 class Game():
     data_map = {}
 
+class Load():
+    layer = ''
+
 class Save():
     current_dir = ''
     current_dir_files = []

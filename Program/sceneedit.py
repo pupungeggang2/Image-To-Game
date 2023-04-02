@@ -24,7 +24,7 @@ def display():
         draw.draw_save_image_window()
 
     elif var.state == 'layer_load':
-        draw.draw_load_window()
+        draw.draw_layer_load_window()
 
     pygame.display.flip()
 
@@ -125,6 +125,20 @@ def mouse_up(x, y, button):
                 else:
                     var.Image_Editor.layer_visible['player'] = True
 
+            if physics.point_inside_rect_array(x, y, UI.Left_Bar.layer_background_erase):
+                var.Image_Editor.layer['background'].fill(const.Color.erase)
+
+            if physics.point_inside_rect_array(x, y, UI.Left_Bar.layer_object_erase):
+                var.Image_Editor.layer['object'].fill(const.Color.erase)
+
+            if physics.point_inside_rect_array(x, y, UI.Left_Bar.layer_background_load):
+                var.state = 'layer_load'
+                var.Load.layer = 'background'
+
+            if physics.point_inside_rect_array(x, y, UI.Left_Bar.layer_object_load):
+                var.state = 'layer_load'
+                var.Load.layer = 'object'
+
         elif var.state == 'image_save':
             if physics.point_inside_rect_array(x, y, UI.Save_Window.close_button):
                 var.state = ''
@@ -141,7 +155,8 @@ def mouse_up(x, y, button):
                     var.state = ''
 
         elif var.state == 'layer_load':
-            pass
+            if physics.point_inside_rect_array(x, y, UI.Load_Window.close_button):
+                var.state = ''
 
 def mouse_motion(x, y):
     if var.state == '':

@@ -115,8 +115,6 @@ def draw_left_bar():
     pygame.draw.rect(var.screen, const.Color.black, UI.Left_Bar.rect, 2)
 
 def draw_game_screen_edit():
-    pygame.draw.rect(var.screen, const.Color.black, UI.Game_Screen_Edit.rect, 2)
-
     if var.Image_Editor.canvas_mode == 'draw':
         if var.Image_Editor.layer_visible['background'] == True:
             var.screen.blit(var.Image_Editor.layer['background'], UI.Game_Screen_Edit.rect[:2])
@@ -127,17 +125,17 @@ def draw_game_screen_edit():
     elif var.Image_Editor.canvas_mode == 'game':
         var.screen.blit(var.game_output, UI.Game_Screen_Edit.rect[:2])
 
+    pygame.draw.rect(var.screen, const.Color.black, UI.Game_Screen_Edit.rect, 2)
+
 def draw_lower_bar():
     pygame.draw.rect(var.screen, const.Color.black, UI.Lower_Bar.rect, 2)
 
 def draw_save_image_window():
-    pygame.draw.rect(var.screen, const.Color.white, UI.Save_Window.rect)
-
     # Upper Bar
-    pygame.draw.rect(var.screen, const.Color.black, UI.Save_Window.rect, 2)
+    pygame.draw.rect(var.screen, const.Color.white, UI.Save_Window.rect)
     pygame.draw.rect(var.screen, const.Color.black, UI.Save_Window.title_bar, 2)
-    var.screen.blit(asset.Img.Icon.close, UI.Save_Window.close_button)
     var.screen.blit(var.Font.title.render('Save', False, const.Color.black), UI.Save_Window.title_text)
+    var.screen.blit(asset.Img.Icon.close, UI.Save_Window.close_button)
 
     # Directory Bar
     pygame.draw.rect(var.screen, const.Color.black, UI.Save_Window.directory_bar, 2)
@@ -154,8 +152,24 @@ def draw_save_image_window():
     pygame.draw.rect(var.screen, const.Color.black, UI.Save_Window.save_button, 2)
     var.screen.blit(var.Font.title.render('Save', False, const.Color.black), UI.Save_Window.save_text)
 
-def draw_load_window():
-    pass
+    pygame.draw.rect(var.screen, const.Color.black, UI.Save_Window.rect, 2)
+
+def draw_layer_load_window():
+    # Upper Bar
+    pygame.draw.rect(var.screen, const.Color.white, UI.Load_Window.rect)
+    pygame.draw.rect(var.screen, const.Color.white, UI.Load_Window.title_bar, 2)
+    var.screen.blit(var.Font.title.render('Load Image', False, const.Color.black), UI.Load_Window.title_text)
+    var.screen.blit(asset.Img.Icon.close, UI.Load_Window.close_button)
+
+    # Directory Bar
+    pygame.draw.rect(var.screen, const.Color.black, UI.Load_Window.directory_bar, 2)
+    var.screen.blit(var.Font.main.render('.../dir/Input/' + var.Save.current_dir, False, const.Color.black), UI.Load_Window.directory_text)
+
+    # Lower Bar
+    pygame.draw.rect(var.screen, const.Color.black, UI.Load_Window.load_button, 2)
+    var.screen.blit(var.Font.title.render('Load', False, const.Color.black), UI.Load_Window.load_text)
+
+    pygame.draw.rect(var.screen, const.Color.black, UI.Load_Window.rect, 2)
 
 def convert_color_code_to_hex(color):
     color_code = '#'

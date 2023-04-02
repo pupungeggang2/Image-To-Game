@@ -79,4 +79,13 @@ class Save_Window():
     save_text = [1008, 604]
 
 class Load_Window():
-    rect = [160, 80, 960, 480]
+    rect = [160, 80, 960, 560]
+    close_button = [1080, 80, 40, 40]
+    title_bar = [160, 80, 40, 40]
+    title_text = [168, 84]
+    directory_bar = [160, 120, 960, 40]
+    directory_text = [168, 128]
+    lower_bar = [160, 600, 960, 40]
+    lower_text_rect = [160, 600, 840, 40]
+    load_button = [1000, 600, 120, 40]
+    load_text = [1008, 604]
