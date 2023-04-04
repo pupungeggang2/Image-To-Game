@@ -26,6 +26,8 @@ class Game():
 
 class Load():
     layer = ''
+    current_dir = ''
+    current_dir_files = []
 
 class Save():
     current_dir = ''

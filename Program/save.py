@@ -28,6 +28,10 @@ def save_window_init():
     var.Save.file_name_write = ''
     var.Save.file_name_mode = False
 
+def load_window_init():
+    var.Load.current_dir = ''
+    var.Load.current_dir_files = os.listdir('./Input/' + var.Save.current_dir)
+
 def go_upper_directory():
     directory_split = var.Save.current_dir.split('/')
 
