@@ -141,6 +141,15 @@ def draw_save_image_window():
     pygame.draw.rect(var.screen, const.Color.black, UI.Save_Window.directory_bar, 2)
     var.screen.blit(var.Font.main.render('.../dir/Drawing/' + var.Save.current_dir, False, const.Color.black), UI.Save_Window.directory_text)
 
+    # Center
+    for i in range(20):
+        if var.Save.file_list_page * 20 + i < len(var.Save.current_dir_files):
+            var.screen.blit(var.Font.main.render(var.Save.current_dir_files[var.Save.file_list_page * 20 + i], False, const.Color.black), [UI.Save_Window.file_list[i][0] + 8, UI.Save_Window.file_list[i][1] + 8])
+
+    var.screen.blit(asset.Img.Icon.prev, UI.Save_Window.file_list_prev_button)
+    var.screen.blit(asset.Img.Icon.next, UI.Save_Window.file_list_next_button)
+    var.screen.blit(var.Font.title.render(str(var.Save.file_list_page + 1) + '/' + str((len(var.Save.current_dir_files) - 1) // 20 + 1), False, const.Color.black), UI.Save_Window.file_list_page_text)
+
     # Lower Bar
     pygame.draw.rect(var.screen, const.Color.black, UI.Save_Window.lower_text_rect, 2)
     
@@ -164,6 +173,18 @@ def draw_layer_load_window():
     # Directory Bar
     pygame.draw.rect(var.screen, const.Color.black, UI.Load_Window.directory_bar, 2)
     var.screen.blit(var.Font.main.render('.../dir/Input/' + var.Save.current_dir, False, const.Color.black), UI.Load_Window.directory_text)
+
+    # Center
+    if var.Load.file_list_selected > -1:
+        pygame.draw.rect(var.screen, const.Color.green, UI.Load_Window.file_list[var.Load.file_list_selected], 2)
+
+    for i in range(20):
+        if var.Load.file_list_page * 20 + i < len(var.Load.current_dir_files):
+            var.screen.blit(var.Font.main.render(var.Load.current_dir_files[var.Load.file_list_page * 20 + i], False, const.Color.black), [UI.Load_Window.file_list[i][0] + 8, UI.Load_Window.file_list[i][1] + 8])
+
+    var.screen.blit(asset.Img.Icon.prev, UI.Load_Window.file_list_prev_button)
+    var.screen.blit(asset.Img.Icon.next, UI.Load_Window.file_list_next_button)
+    var.screen.blit(var.Font.title.render(str(var.Load.file_list_page + 1) + '/' + str((len(var.Load.current_dir_files) - 1) // 20 + 1), False, const.Color.black), UI.Load_Window.file_list_page_text)
 
     # Lower Bar
     pygame.draw.rect(var.screen, const.Color.black, UI.Load_Window.load_button, 2)

@@ -11,6 +11,8 @@ class Img():
         
         undo = None
         redo = None
+        prev = None
+        next = None
 
         brush = None
         erase = None

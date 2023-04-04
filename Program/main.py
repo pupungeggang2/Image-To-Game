@@ -38,6 +38,9 @@ def load_image():
     asset.Img.Icon.visible = pygame.image.load('Image/Icon/Visible.png')
     asset.Img.Icon.invisible = pygame.image.load('Image/Icon/Invisible.png')
 
+    asset.Img.Icon.prev = pygame.image.load('Image/Icon/Prev.png')
+    asset.Img.Icon.next = pygame.image.load('Image/Icon/Next.png')
+
     asset.Img.Icon.brush = pygame.image.load('Image/Icon/Brush.png')
     asset.Img.Icon.erase = pygame.image.load('Image/Icon/Erase.png')
     asset.Img.Icon.convert = pygame.image.load('Image/Icon/Convert.png')

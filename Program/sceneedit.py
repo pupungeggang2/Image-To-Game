@@ -59,8 +59,7 @@ def mouse_up(x, y, button):
 
             if physics.point_inside_rect_array(x, y, UI.Upper_Bar.image_save):
                 var.state = 'image_save'
-                save.save_window_init()
-                print(var.state)
+                save.save_image_window_init()
 
             if physics.point_inside_rect_array(x, y, UI.Upper_Bar.brush):
                 var.Image_Editor.brush_mode = 'draw'
@@ -134,10 +133,12 @@ def mouse_up(x, y, button):
             if physics.point_inside_rect_array(x, y, UI.Left_Bar.layer_background_load):
                 var.state = 'layer_load'
                 var.Load.layer = 'background'
+                save.layer_load_window_init()
 
             if physics.point_inside_rect_array(x, y, UI.Left_Bar.layer_object_load):
                 var.state = 'layer_load'
                 var.Load.layer = 'object'
+                save.layer_load_window_init()
 
         elif var.state == 'image_save':
             if physics.point_inside_rect_array(x, y, UI.Save_Window.close_button):
@@ -154,9 +155,41 @@ def mouse_up(x, y, button):
                     save.save_image_drawn(var.Save.file_name_write)
                     var.state = ''
 
+            if physics.point_inside_rect_array(x, y, UI.Save_Window.file_list_prev_button):
+                if var.Save.file_list_page > 0:
+                    var.Save.file_list_page -= 1
+
+            elif physics.point_inside_rect_array(x, y, UI.Save_Window.file_list_next_button):
+                if var.Save.file_list_page < len((var.Save.current_dir_files) - 1) // 20 + 1:
+                    var.Save.file_list_page += 1
+
         elif var.state == 'layer_load':
             if physics.point_inside_rect_array(x, y, UI.Load_Window.close_button):
                 var.state = ''
+
+            for i in range(20):
+                if physics.point_inside_rect_array(x, y, UI.Load_Window.file_list[i]):
+                    if var.Load.file_list_page * 20 + i < len(var.Load.current_dir_files):
+                        var.Load.file_list_selected = i
+
+            if physics.point_inside_rect_array(x, y, UI.Load_Window.file_list_prev_button):
+                if var.Load.file_list_page > 0:
+                    var.Load.file_list_page -= 1
+                    var.Load.file_list_selected = -1
+
+            elif physics.point_inside_rect_array(x, y, UI.Load_Window.file_list_next_button):
+                if var.Load.file_list_page < len((var.Load.current_dir_files) - 1) // 20 + 1:
+                    var.Load.file_list_page += 1
+                    var.Load.file_list_selected = -1
+
+            if physics.point_inside_rect_array(x, y, UI.Load_Window.load_button):
+                if var.Load.file_list_selected > -1:
+                    if len(var.Load.current_dir_files[var.Load.file_list_page * 20 + var.Load.file_list_selected]) > 4:
+                        if var.Load.current_dir_files[var.Load.file_list_page * 20 + var.Load.file_list_selected][-4:] == '.png' or var.Load.current_dir_files[var.Load.file_list_page * 20 + var.Load.file_list_selected][-4:] == '.jpg':
+                            file_name = var.Load.current_dir_files[var.Load.file_list_page * 20 + var.Load.file_list_selected]
+                            var.Image_Editor.layer[var.Load.layer].fill(const.Color.erase)
+                            var.Image_Editor.layer[var.Load.layer].blit(pygame.image.load('Input/' + var.Load.current_dir + file_name), [0, 0])
+                            var.state = ''
 
 def mouse_motion(x, y):
     if var.state == '':

@@ -28,12 +28,15 @@ class Load():
     layer = ''
     current_dir = ''
     current_dir_files = []
+    file_list_page = 0
+    file_list_selected = 0
 
 class Save():
     current_dir = ''
     current_dir_files = []
     file_name_write = ''
     file_name_mode = False
+    file_list_page = 0
 
 class Font():
     title = None

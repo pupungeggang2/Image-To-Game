@@ -18,19 +18,22 @@ def save_image_drawn(image_name):
     if var.Image_Editor.layer_visible['object'] == True:
         var.Image_Editor.full_image.blit(var.Image_Editor.layer['object'], [0, 0])
 
-    pygame.image.save(var.Image_Editor.full_image, './Drawing/' + var.Save.current_dir + image_name + '_full.png')
-    pygame.image.save(var.Image_Editor.layer['background'], './Drawing/' + var.Save.current_dir + image_name + '_background.png')
-    pygame.image.save(var.Image_Editor.layer['object'], './Drawing/'+ var.Save.current_dir + image_name + '_object.png')
+    pygame.image.save(var.Image_Editor.full_image, './Drawing/' + var.Save.current_dir + image_name + 'Full.png')
+    pygame.image.save(var.Image_Editor.layer['background'], './Drawing/' + var.Save.current_dir + image_name + 'Background.png')
+    pygame.image.save(var.Image_Editor.layer['object'], './Drawing/'+ var.Save.current_dir + image_name + 'Object.png')
 
-def save_window_init():
+def save_image_window_init():
     var.Save.current_dir = ''
     var.Save.current_dir_files = os.listdir('./Drawing/' + var.Save.current_dir)
     var.Save.file_name_write = ''
     var.Save.file_name_mode = False
+    var.Save.file_list_page = 0
 
-def load_window_init():
+def layer_load_window_init():
     var.Load.current_dir = ''
     var.Load.current_dir_files = os.listdir('./Input/' + var.Save.current_dir)
+    var.Load.file_list_page = 0
+    var.Load.file_list_selected = -1
 
 def go_upper_directory():
     directory_split = var.Save.current_dir.split('/')
