@@ -49,7 +49,7 @@ class Left_Bar():
     layer_background_select = [0, 600, 360, 40]
     layer_background_text = [8, 608]
     layer_background_erase = [400, 600, 40, 40]
-    layer_background_load = [440, 600, 440, 40]
+    layer_background_load = [440, 600, 40, 40]
     layer_background_visible = [360, 600, 40, 40]
     layer_white_rect = [0, 640, 480, 40]
     layer_white_text = [8, 648]
