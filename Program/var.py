@@ -1,5 +1,4 @@
 screen = None
-game_output = None
 clock = None
 FPS = 60
 msg = {'msg' : '', 'time' : 0}
@@ -22,7 +21,8 @@ class Image_Editor():
     full_image = None
 
 class Game():
-    data_map = {}
+    data_level = {}
+    keyboard = {'up' : False, 'down' : False, 'left' : False, 'right' : False}
 
 class Load():
     layer = ''

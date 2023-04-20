@@ -13,6 +13,8 @@ def draw_upper_bar():
     var.screen.blit(asset.Img.Icon.image_save, UI.Upper_Bar.image_save)
     var.screen.blit(asset.Img.Icon.brush, UI.Upper_Bar.brush)
     var.screen.blit(asset.Img.Icon.erase, UI.Upper_Bar.erase)
+    var.screen.blit(asset.Img.Icon.palette, UI.Upper_Bar.palette)
+    var.screen.blit(asset.Img.Icon.game, UI.Upper_Bar.game)
     var.screen.blit(asset.Img.Icon.convert, UI.Upper_Bar.convert)
     var.screen.blit(asset.Img.Icon.play, UI.Upper_Bar.play)
 
@@ -21,6 +23,12 @@ def draw_upper_bar():
 
     elif var.Image_Editor.brush_mode == 'erase':
         pygame.draw.rect(var.screen, const.Color.green, UI.Upper_Bar.erase, 2)
+
+    if var.Image_Editor.canvas_mode == 'draw':
+        pygame.draw.rect(var.screen, const.Color.green, UI.Upper_Bar.palette, 2)
+
+    elif var.Image_Editor.canvas_mode == 'erase':
+        pygame.draw.rect(var.screen, const.Color.green, UI.Upper_Bar.game, 2)
 
 def draw_message_bar():
     pygame.draw.rect(var.screen, const.Color.black, UI.Message_Bar.rect, 2)
@@ -123,9 +131,12 @@ def draw_game_screen_edit():
             var.screen.blit(var.Image_Editor.layer['object'], UI.Game_Screen_Edit.rect[:2])
 
     elif var.Image_Editor.canvas_mode == 'game':
-        var.screen.blit(var.game_output, UI.Game_Screen_Edit.rect[:2])
+        draw_game_file(var.Game.data_level)
 
     pygame.draw.rect(var.screen, const.Color.black, UI.Game_Screen_Edit.rect, 2)
+
+def draw_game_file(game_file):
+    var.screen.blit(var.Image_Editor.layer['background'], UI.Game_Screen_Edit.rect[:2])
 
 def draw_lower_bar():
     pygame.draw.rect(var.screen, const.Color.black, UI.Lower_Bar.rect, 2)

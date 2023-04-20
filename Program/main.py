@@ -33,6 +33,9 @@ def load_image():
     asset.Img.Icon.save = pygame.image.load('Image/Icon/Save.png')
     asset.Img.Icon.image_save = pygame.image.load('Image/Icon/ImageSave.png')
     asset.Img.Icon.layer_load = pygame.image.load('Image/Icon/LayerLoad.png')
+    asset.Img.Icon.palette = pygame.image.load('Image/Icon/Palette.png')
+    asset.Img.Icon.game = pygame.image.load('Image/Icon/Game.png')
+
     asset.Img.Icon.close = pygame.image.load('Image/Icon/Close.png')
     asset.Img.Icon.upper_directory = pygame.image.load('Image/Icon/UpperDirectory.png')
     asset.Img.Icon.visible = pygame.image.load('Image/Icon/Visible.png')

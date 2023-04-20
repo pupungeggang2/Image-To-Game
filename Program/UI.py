@@ -5,6 +5,8 @@ class Upper_Bar():
     image_save = [80, 0, 40, 40]
     brush = [120, 0, 40, 40]
     erase = [160, 0, 40, 40]
+    palette = [200, 0, 40, 40]
+    game = [240, 0, 40, 40]
     convert = [600, 0, 40, 40]
     play = [640, 0, 40, 40]
 

@@ -67,6 +67,12 @@ def mouse_up(x, y, button):
             elif physics.point_inside_rect_array(x, y, UI.Upper_Bar.erase):
                 var.Image_Editor.brush_mode = 'erase'
 
+            if physics.point_inside_rect_array(x, y, UI.Upper_Bar.palette):
+                var.Image_Editor.canvas_mode = 'draw'
+
+            elif physics.point_inside_rect_array(x, y, UI.Upper_Bar.game):
+                var.Image_Editor.canvas_mode = 'game'
+
             # Left bar - Brush size change
             if physics.point_inside_rect_array(x, y, UI.Left_Bar.brush_size_click_rect):
                 for i in range(1, 41):
