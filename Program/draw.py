@@ -27,7 +27,7 @@ def draw_upper_bar():
     if var.Image_Editor.canvas_mode == 'draw':
         pygame.draw.rect(var.screen, const.Color.green, UI.Upper_Bar.palette, 2)
 
-    elif var.Image_Editor.canvas_mode == 'erase':
+    elif var.Image_Editor.canvas_mode == 'game':
         pygame.draw.rect(var.screen, const.Color.green, UI.Upper_Bar.game, 2)
 
 def draw_message_bar():
