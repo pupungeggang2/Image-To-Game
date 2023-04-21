@@ -19,10 +19,12 @@ class Image_Editor():
     layer = {'background' : None, 'object' : None}
     layer_visible = {'background' : True, 'object' : True, 'white' : True, 'player' : False}
     full_image = None
+    start_position = [40, 40]
 
 class Game():
     data_level = {}
     keyboard = {'up' : False, 'down' : False, 'left' : False, 'right' : False}
+    data_playing = {}
 
 class Load():
     layer = ''

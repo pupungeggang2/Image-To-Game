@@ -2,23 +2,36 @@ import pygame
 
 import os
 import sys
+import json
 
 import asset
 import var
 import const
+import AI
 
 import sceneedit
 import sceneplay
 
 def init():
+    # Setting screen
     pygame.init()
     var.screen = pygame.display.set_mode(const.window_size, pygame.SRCALPHA)
     pygame.display.set_caption('Image Game Converter')
+
+    # Setting image
     var.Image_Editor.layer['background'] = pygame.Surface(const.canvas_size, pygame.SRCALPHA)
     var.Image_Editor.layer['object'] = pygame.Surface(const.canvas_size, pygame.SRCALPHA)
     var.Image_Editor.full_image = pygame.Surface(const.canvas_size, pygame.SRCALPHA)
     var.game_output = pygame.Surface(const.canvas_size, pygame.SRCALPHA)
+
+    # Settong color
     var.clock = pygame.time.Clock()
+
+    # Setting initial level
+    var.Game.data_level = json.loads(json.dumps(const.empty_game_file))
+
+    # Setting AI
+    AI.AI_init()
 
     load_font()
     load_image()
@@ -48,6 +61,18 @@ def load_image():
     asset.Img.Icon.erase = pygame.image.load('Image/Icon/Erase.png')
     asset.Img.Icon.convert = pygame.image.load('Image/Icon/Convert.png')
     asset.Img.Icon.play = pygame.image.load('Image/Icon/Play.png')
+
+    asset.Img.player = pygame.image.load('Image/Player.png')
+
+    asset.Img.block[1] = pygame.image.load('Image/Block/Block1.png')
+    asset.Img.block[2] = pygame.image.load('Image/Block/Block2.png')
+    asset.Img.block[3] = pygame.image.load('Image/Block/Block3.png')
+    asset.Img.block[4] = pygame.image.load('Image/Block/Block4.png')
+
+    asset.Img.thing[1] = pygame.image.load('Image/Thing/Thing1.png')
+    asset.Img.thing[2] = pygame.image.load('Image/Thing/Thing2.png')
+    asset.Img.thing[3] = pygame.image.load('Image/Thing/Thing3.png')
+    asset.Img.thing[4] = pygame.image.load('Image/Thing/Thing4.png')
 
 def main():
     while True:

@@ -79,3 +79,6 @@ def erase_line(x, y):
         pygame.draw.polygon(var.Image_Editor.layer[var.Image_Editor.layer_selected], const.Color.erase, [point_start_ur, point_start_lr, point_start_ll, point_cur_ll, point_cur_ul, point_cur_ur])
 
     var.Image_Editor.brush_line_start = [x - UI.Game_Screen_Edit.rect[0], y - UI.Game_Screen_Edit.rect[1]]
+
+def load_game_file():
+    pass

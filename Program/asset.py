@@ -22,3 +22,7 @@ class Img():
 
         convert = None
         play = None
+
+    block = {}
+    thing = {}
+    player = None

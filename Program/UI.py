@@ -113,3 +113,9 @@ class Load_Window():
     lower_text_rect = [160, 600, 840, 40]
     load_button = [1000, 600, 120, 40]
     load_text = [1008, 604]
+
+class Game():
+    play_button = [0, 420, 40, 40]
+    pause_button = [0, 460, 40, 40]
+    stop_button = [0, 500, 40, 40]
+    screen = [240, 40, 800, 600]

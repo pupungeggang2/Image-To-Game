@@ -138,8 +138,19 @@ def draw_game_screen_edit():
 def draw_game_file(game_file):
     var.screen.blit(var.Image_Editor.layer['background'], UI.Game_Screen_Edit.rect[:2])
 
+    for i in range(15):
+        for j in range(20):
+            if var.Game.data_level['block'][i][j] != 0:
+                var.screen.blit(asset.Img.block[var.Game.data_level['block'][i][j]], [UI.Game_Screen_Edit.rect[0] + j * 40, UI.Game_Screen_Edit.rect[1] + i * 40])
+
+    for i in range(len(var.Game.data_level['thing'])):
+        var.screen.blit(asset.Img.thing[var.Game.data_level['thing'][i][0]], [UI.Game_Screen_Edit.rect[0] + var.Game.data_level['thing'][i][1], UI.Game_Screen_Edit.rect[1] + var.Game.data_level['thing'][i][2]])
+
+    var.screen.blit(asset.Img.player, [UI.Game_Screen_Edit.rect[0] + var.Game.data_level['start_position'][0] - 16, UI.Game_Screen_Edit.rect[1] + var.Game.data_level['start_position'][1] - 16])
+
 def draw_lower_bar():
     pygame.draw.rect(var.screen, const.Color.black, UI.Lower_Bar.rect, 2)
+    var.screen.blit(var.Font.title.render(var.Image_Editor.brush_mode + ' / ' + var.Image_Editor.canvas_mode, const.Color.black, False), UI.Lower_Bar.text_status)
 
 def draw_save_image_window():
     # Upper Bar
