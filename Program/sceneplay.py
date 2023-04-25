@@ -5,9 +5,18 @@ import var
 import const
 import physics
 
+import game
 import draw
 
 def loop():
+    if var.state == 'play':
+        game.player_move()
+
+        if game.player_defeat_check() == True:
+            var.state = 'win'
+        elif game.player_win_check() == True:
+            var.state = 'defeat'
+
     display()
 
 def display():

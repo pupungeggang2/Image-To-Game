@@ -131,7 +131,7 @@ def input_handle():
                 sceneedit.key_down(key)
 
             elif var.scene == 'play':
-                sceneedit.key_down(key)
+                sceneplay.key_down(key)
 
         elif event.type == pygame.KEYUP:
             key = event.key
@@ -140,7 +140,7 @@ def input_handle():
                 sceneedit.key_up(key)
 
             elif var.scene == 'play':
-                sceneedit.key_up(key)
+                sceneplay.key_up(key)
 
 init()
 main()

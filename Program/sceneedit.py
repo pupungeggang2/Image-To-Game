@@ -8,6 +8,7 @@ import draw
 import physics
 import save
 import editor
+import AI
 
 def loop():
     display()
@@ -77,10 +78,14 @@ def mouse_up(x, y, button):
             elif physics.point_inside_rect_array(x, y, UI.Upper_Bar.game):
                 var.Image_Editor.canvas_mode = 'game'
 
-            if physics.point_inside_rect_array(x, y, UI.Upper_Bar.play):
+            elif physics.point_inside_rect_array(x, y, UI.Upper_Bar.convert):
+                AI.convert_image_to_game()
+
+            elif physics.point_inside_rect_array(x, y, UI.Upper_Bar.play):
                 if var.Image_Editor.canvas_mode == 'game':
                     editor.load_game_file()
                     var.scene = 'play'
+                    var.state = 'play'
 
             # Left bar - Brush size change
             if physics.point_inside_rect_array(x, y, UI.Left_Bar.brush_size_click_rect):
