@@ -13,6 +13,7 @@ def draw_upper_bar():
     var.screen.blit(asset.Img.Icon.image_save, UI.Upper_Bar.image_save)
     var.screen.blit(asset.Img.Icon.brush, UI.Upper_Bar.brush)
     var.screen.blit(asset.Img.Icon.erase, UI.Upper_Bar.erase)
+    var.screen.blit(asset.Img.Icon.move, UI.Upper_Bar.move)
     var.screen.blit(asset.Img.Icon.palette, UI.Upper_Bar.palette)
     var.screen.blit(asset.Img.Icon.game, UI.Upper_Bar.game)
     var.screen.blit(asset.Img.Icon.convert, UI.Upper_Bar.convert)
@@ -23,6 +24,9 @@ def draw_upper_bar():
 
     elif var.Image_Editor.brush_mode == 'erase':
         pygame.draw.rect(var.screen, const.Color.green, UI.Upper_Bar.erase, 2)
+
+    elif var.Image_Editor.brush_mode == 'move':
+        pygame.draw.rect(var.screen, const.Color.green, UI.Upper_Bar.move, 2)
 
     if var.Image_Editor.canvas_mode == 'draw':
         pygame.draw.rect(var.screen, const.Color.green, UI.Upper_Bar.palette, 2)
@@ -130,6 +134,9 @@ def draw_game_screen_edit():
         if var.Image_Editor.layer_visible['object'] == True:
             var.screen.blit(var.Image_Editor.layer['object'], UI.Game_Screen_Edit.rect[:2])
 
+        if var.Image_Editor.layer_visible['player'] == True:
+            var.screen.blit(asset.Img.player, [UI.Game_Screen_Edit.rect[0] + var.Image_Editor.start_position[0] - 16, UI.Game_Screen_Edit.rect[1] + var.Image_Editor.start_position[1] - 16])
+
     elif var.Image_Editor.canvas_mode == 'game':
         draw_game_file(var.Game.data_level)
 
@@ -213,6 +220,26 @@ def draw_layer_load_window():
     var.screen.blit(var.Font.title.render('Load', False, const.Color.black), UI.Load_Window.load_text)
 
     pygame.draw.rect(var.screen, const.Color.black, UI.Load_Window.rect, 2)
+
+def draw_upper_bar_play():
+    var.screen.blit(asset.Img.Icon.play, UI.Game.play_button)
+    var.screen.blit(asset.Img.Icon.pause, UI.Game.pause_button)
+    var.screen.blit(asset.Img.Icon.stop, UI.Game.stop_button)
+
+def draw_game_screen_play():
+    var.screen.blit(var.Image_Editor.layer['background'], UI.Game.screen[:2])
+
+    for i in range(15):
+        for j in range(20):
+            if var.Game.data_playing['block'][i][j] != 0:
+                var.screen.blit(asset.Img.block[var.Game.data_playing['block'][i][j]], [UI.Game.screen[0] + j * 40, UI.Game.screen[1] + i * 40])
+
+    for i in range(len(var.Game.data_playing['thing'])):
+        var.screen.blit(asset.Img.thing[var.Game.data_playing['thing'][i][0]], [UI.Game.screen[0] + var.Game.data_playing['thing'][i][1], UI.Game.screen[1] + var.Game.data_playing['thing'][i][2]])
+
+    var.screen.blit(asset.Img.player, [UI.Game.screen[0] + var.Game.data_playing['player_position'][0] - 16, UI.Game.screen[1] + var.Game.data_playing['player_position'][1] - 16])
+
+    pygame.draw.rect(var.screen, const.Color.black, UI.Game.screen, 2)
 
 def convert_color_code_to_hex(color):
     color_code = '#'

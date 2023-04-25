@@ -4,6 +4,7 @@ class Img():
         save = None
         image_save = None
         layer_load = None
+        move = None
         palette = None
         game = None
 
@@ -22,6 +23,8 @@ class Img():
 
         convert = None
         play = None
+        pause = None
+        stop = None
 
     block = {}
     thing = {}

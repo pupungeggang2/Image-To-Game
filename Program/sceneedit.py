@@ -32,15 +32,16 @@ def mouse_down(x, y, button):
     if button == 1:
         if var.state == '':
             if var.Image_Editor.canvas_mode == 'draw':
-                if var.Image_Editor.brush_mode == 'draw':
-                    if physics.point_inside_rect_array(x, y, UI.Game_Screen_Edit.rect):
-                        var.Image_Editor.brush_pressed = True
-                        editor.draw_point(x, y)
+                if var.Image_Editor.layer_selected == 'background' or var.Image_Editor.layer_selected == 'object':
+                    if var.Image_Editor.brush_mode == 'draw':
+                        if physics.point_inside_rect_array(x, y, UI.Game_Screen_Edit.rect):
+                            var.Image_Editor.brush_pressed = True
+                            editor.draw_point(x, y)
 
-                elif var.Image_Editor.brush_mode == 'erase':
-                    if physics.point_inside_rect_array(x, y, UI.Game_Screen_Edit.rect):
-                        var.Image_Editor.brush_pressed = True
-                        editor.erase_point(x, y)
+                    elif var.Image_Editor.brush_mode == 'erase':
+                        if physics.point_inside_rect_array(x, y, UI.Game_Screen_Edit.rect):
+                            var.Image_Editor.brush_pressed = True
+                            editor.erase_point(x, y)
 
 def mouse_up(x, y, button):
     if button == 1:
@@ -66,6 +67,9 @@ def mouse_up(x, y, button):
 
             elif physics.point_inside_rect_array(x, y, UI.Upper_Bar.erase):
                 var.Image_Editor.brush_mode = 'erase'
+
+            elif physics.point_inside_rect_array(x, y, UI.Upper_Bar.move):
+                var.Image_Editor.brush_mode = 'move'
 
             if physics.point_inside_rect_array(x, y, UI.Upper_Bar.palette):
                 var.Image_Editor.canvas_mode = 'draw'
@@ -151,6 +155,11 @@ def mouse_up(x, y, button):
                 var.Load.layer = 'object'
                 save.layer_load_window_init()
 
+            # Canvas
+            if var.Image_Editor.brush_mode == 'move':
+                if physics.point_inside_rect_array(x, y, UI.Game_Screen_Edit.rect):
+                    var.Image_Editor.start_position = [x - UI.Game_Screen_Edit.rect[0], y - UI.Game_Screen_Edit.rect[1]]
+
         elif var.state == 'image_save':
             if physics.point_inside_rect_array(x, y, UI.Save_Window.close_button):
                 var.state = ''
@@ -205,15 +214,16 @@ def mouse_up(x, y, button):
 def mouse_motion(x, y):
     if var.state == '':
         if var.Image_Editor.canvas_mode == 'draw':
-            if var.Image_Editor.brush_mode == 'draw':
-                if physics.point_inside_rect_array(x, y, UI.Game_Screen_Edit.rect):
-                    if var.Image_Editor.brush_pressed == True:
-                        editor.draw_line(x, y)
+            if var.Image_Editor.layer_selected == 'background' or var.Image_Editor.layer_selected == 'object':
+                if var.Image_Editor.brush_mode == 'draw':
+                    if physics.point_inside_rect_array(x, y, UI.Game_Screen_Edit.rect):
+                        if var.Image_Editor.brush_pressed == True:
+                            editor.draw_line(x, y)
 
-            elif var.Image_Editor.brush_mode == 'erase':
-                if physics.point_inside_rect_array(x, y, UI.Game_Screen_Edit.rect):
-                    if var.Image_Editor.brush_pressed == True:
-                        editor.erase_line(x, y)
+                elif var.Image_Editor.brush_mode == 'erase':
+                    if physics.point_inside_rect_array(x, y, UI.Game_Screen_Edit.rect):
+                        if var.Image_Editor.brush_pressed == True:
+                            editor.erase_line(x, y)
 
 def key_down(key):
     if var.state == 'image_save':

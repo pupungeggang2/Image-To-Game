@@ -46,6 +46,7 @@ def load_image():
     asset.Img.Icon.save = pygame.image.load('Image/Icon/Save.png')
     asset.Img.Icon.image_save = pygame.image.load('Image/Icon/ImageSave.png')
     asset.Img.Icon.layer_load = pygame.image.load('Image/Icon/LayerLoad.png')
+    asset.Img.Icon.move = pygame.image.load('Image/Icon/Move.png')
     asset.Img.Icon.palette = pygame.image.load('Image/Icon/Palette.png')
     asset.Img.Icon.game = pygame.image.load('Image/Icon/Game.png')
 
@@ -61,6 +62,8 @@ def load_image():
     asset.Img.Icon.erase = pygame.image.load('Image/Icon/Erase.png')
     asset.Img.Icon.convert = pygame.image.load('Image/Icon/Convert.png')
     asset.Img.Icon.play = pygame.image.load('Image/Icon/Play.png')
+    asset.Img.Icon.pause = pygame.image.load('Image/Icon/Pause.png')
+    asset.Img.Icon.stop = pygame.image.load('Image/Icon/Stop.png')
 
     asset.Img.player = pygame.image.load('Image/Player.png')
 
@@ -110,7 +113,7 @@ def input_handle():
                 sceneedit.mouse_up(mouse[0], mouse[1], button)
 
             if var.scene == 'play':
-                sceneedit.mouse_up(mouse[0], mouse[1], button)
+                sceneplay.mouse_up(mouse[0], mouse[1], button)
 
         elif event.type == pygame.MOUSEMOTION:
             mouse = pygame.mouse.get_pos()

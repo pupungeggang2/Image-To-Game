@@ -3,6 +3,7 @@ import const
 
 import UI
 import pygame
+import json
 
 def draw_point(x, y):
     var.Image_Editor.brush_line_start = [x - UI.Game_Screen_Edit.rect[0], y - UI.Game_Screen_Edit.rect[1]]
@@ -81,4 +82,12 @@ def erase_line(x, y):
     var.Image_Editor.brush_line_start = [x - UI.Game_Screen_Edit.rect[0], y - UI.Game_Screen_Edit.rect[1]]
 
 def load_game_file():
-    pass
+    var.Game.data_playing = json.loads(json.dumps(var.Game.data_level))
+    var.Game.data_playing['player_position'] = [var.Game.data_level['start_position'][0], var.Game.data_level['start_position'][1]]
+    var.Game.data_playing['speed'] = 160
+    var.Game.data_playing['y_speed'] = 0
+    var.Game.data_playing['terminal_speed'] = 800
+    var.Game.data_playing['gravity'] = 1600
+    var.Game.data_playing['jump_power'] = -500
+    var.Game.data_playing['jump_num'] = 0
+    var.Game.data_playing['ground'] = False

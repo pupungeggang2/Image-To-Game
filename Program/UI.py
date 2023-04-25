@@ -5,8 +5,9 @@ class Upper_Bar():
     image_save = [80, 0, 40, 40]
     brush = [120, 0, 40, 40]
     erase = [160, 0, 40, 40]
-    palette = [200, 0, 40, 40]
-    game = [240, 0, 40, 40]
+    move = [200, 0, 40, 40]
+    palette = [240, 0, 40, 40]
+    game = [280, 0, 40, 40]
     convert = [600, 0, 40, 40]
     play = [640, 0, 40, 40]
 
@@ -115,7 +116,7 @@ class Load_Window():
     load_text = [1008, 604]
 
 class Game():
-    play_button = [0, 420, 40, 40]
-    pause_button = [0, 460, 40, 40]
-    stop_button = [0, 500, 40, 40]
+    play_button = [580, 0, 40, 40]
+    pause_button = [620, 0, 40, 40]
+    stop_button = [660, 0, 40, 40]
     screen = [240, 40, 800, 600]
