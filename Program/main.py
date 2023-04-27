@@ -112,7 +112,7 @@ def input_handle():
             if var.scene == 'edit':
                 sceneedit.mouse_up(mouse[0], mouse[1], button)
 
-            if var.scene == 'play':
+            elif var.scene == 'play':
                 sceneplay.mouse_up(mouse[0], mouse[1], button)
 
         elif event.type == pygame.MOUSEMOTION:
@@ -122,7 +122,7 @@ def input_handle():
                 sceneedit.mouse_motion(mouse[0], mouse[1])
 
             elif var.scene == 'play':
-                sceneedit.mouse_motion(mouse[0], mouse[1])
+                sceneplay.mouse_motion(mouse[0], mouse[1])
 
         elif event.type == pygame.KEYDOWN:
             key = event.key

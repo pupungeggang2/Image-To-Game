@@ -229,6 +229,15 @@ def draw_upper_bar_play():
 def draw_game_screen_play():
     var.screen.blit(var.Image_Editor.layer['background'], UI.Game.screen[:2])
 
+    if var.state == 'win':
+        var.screen.blit(var.Font.title.render('You Win!', False, const.Color.black), UI.Game.status_text)
+
+    elif var.state == 'defeat':
+        var.screen.blit(var.Font.title.render('You Lose!', False, const.Color.black), UI.Game.status_text)
+
+    elif var.state == 'pause':
+        var.screen.blit(var.Font.title.render('Paused', False, const.Color.black), UI.Game.status_text)
+
     for i in range(15):
         for j in range(20):
             if var.Game.data_playing['block'][i][j] != 0:

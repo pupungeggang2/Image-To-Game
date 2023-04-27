@@ -13,9 +13,9 @@ def loop():
         game.player_move()
 
         if game.player_defeat_check() == True:
-            var.state = 'win'
-        elif game.player_win_check() == True:
             var.state = 'defeat'
+        elif game.player_win_check() == True:
+            var.state = 'win'
 
     display()
 
@@ -34,33 +34,44 @@ def mouse_up(x, y, button):
             var.scene = 'edit'
             var.state = ''
 
+        elif physics.point_inside_rect_array(x, y, UI.Game.pause_button):
+            if var.state == 'play':
+                var.state = 'pause'
+
+        elif physics.point_inside_rect_array(x, y, UI.Game.play_button):
+            if var.state == 'pause':
+                var.state = 'play'
+
 def mouse_motion(x, y):
     pass
 
 def key_down(key):
     if var.state == 'play':
-        if key == pygame.K_w:
+        if key == pygame.K_w or key == pygame.K_UP:
             var.Game.keyboard['up'] = True
 
-        if key == pygame.K_a:
+        if key == pygame.K_a or key == pygame.K_LEFT:
             var.Game.keyboard['left'] = True
 
-        if key == pygame.K_s:
+        if key == pygame.K_s or key == pygame.K_DOWN:
             var.Game.keyboard['down'] = True
 
-        if key == pygame.K_d:
+        if key == pygame.K_d or key == pygame.K_RIGHT:
             var.Game.keyboard['right'] = True
+
+        if key == pygame.K_SPACE:
+            game.try_jump()
 
 def key_up(key):
     if var.state == 'play':
-        if key == pygame.K_w:
+        if key == pygame.K_w or key == pygame.K_UP:
             var.Game.keyboard['up'] = False
 
-        if key == pygame.K_a:
+        if key == pygame.K_a or key == pygame.K_LEFT:
             var.Game.keyboard['left'] = False
 
-        if key == pygame.K_s:
+        if key == pygame.K_s or key == pygame.K_DOWN:
             var.Game.keyboard['down'] = False
 
-        if key == pygame.K_d:
+        if key == pygame.K_d or key == pygame.K_RIGHT:
             var.Game.keyboard['right'] = False

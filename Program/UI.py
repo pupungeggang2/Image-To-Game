@@ -116,6 +116,7 @@ class Load_Window():
     load_text = [1008, 604]
 
 class Game():
+    status_text = [8, 4]
     play_button = [580, 0, 40, 40]
     pause_button = [620, 0, 40, 40]
     stop_button = [660, 0, 40, 40]
