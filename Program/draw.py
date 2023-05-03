@@ -140,7 +140,16 @@ def draw_game_screen_edit():
     elif var.Image_Editor.canvas_mode == 'game':
         draw_game_file(var.Game.data_level)
 
+    draw_grid()
+
     pygame.draw.rect(var.screen, const.Color.black, UI.Game_Screen_Edit.rect, 2)
+
+def draw_grid():
+    for i in range(19):
+        pygame.draw.line(var.screen, const.Color.gray, [UI.Game_Screen_Edit.rect[0] + 40 * i + 40, UI.Game_Screen_Edit.rect[1]], [UI.Game_Screen_Edit.rect[0] + 40 * i + 40, UI.Game_Screen_Edit.rect[1] + UI.Game_Screen_Edit.rect[3]], 1)
+
+    for i in range(14):
+        pygame.draw.line(var.screen, const.Color.gray, [UI.Game_Screen_Edit.rect[0], UI.Game_Screen_Edit.rect[1] + i * 40 + 40], [UI.Game_Screen_Edit.rect[0] + UI.Game_Screen_Edit.rect[2], UI.Game_Screen_Edit.rect[1] + i * 40 + 40], 1)
 
 def draw_game_file(game_file):
     var.screen.blit(var.Image_Editor.layer['background'], UI.Game_Screen_Edit.rect[:2])

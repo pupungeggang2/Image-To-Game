@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 
 # Temp Image Slices
-Slice/*.png
+Program/Slice/*.png
 
 # Other
 .DS_Store
