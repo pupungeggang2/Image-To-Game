@@ -21,7 +21,6 @@ def convert_image_to_game():
 
     converted_game = json.loads(json.dumps(const.zero_game_file))
     converted_game['start_position'] = [var.Image_Editor.start_position[0], var.Image_Editor.start_position[1]]
-    converted_game
 
     for i in range(300):
         row = i // 20
@@ -32,6 +31,14 @@ def convert_image_to_game():
         if find_void_percentage(img_pieces_pixels) > 80:
             converted_game['block'][row][column] = 0
             converted_game['wall'][row][column] = 0
+            
+        elif find_void_percentage(img_pieces_pixels) < 20:
+            # Background Mode
+            pass
+
+        else:
+            # Object Mode
+            pass
 
     var.Game.data_level = json.loads(json.dumps(converted_game))
 
