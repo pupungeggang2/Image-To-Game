@@ -11,6 +11,7 @@ import draw
 def loop():
     if var.state == 'play':
         game.player_move()
+        game.player_coin_collect()
 
         if game.player_defeat_check() == True:
             var.state = 'defeat'

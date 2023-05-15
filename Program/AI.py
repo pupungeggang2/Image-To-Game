@@ -1,5 +1,5 @@
 import os
-import pandas
+import pandas as pd
 from PIL import Image
 from sklearn import linear_model
 import json
@@ -9,8 +9,12 @@ import pygame
 import var
 import const
 
+data_color = None
+data_object = None
+
 def AI_init():
-    pass
+    data_color = pd.read_csv('Data/color_data.csv')
+    data_object = None
 
 def convert_image_to_game():
     var.Game.data_level['start_position'] = [var.Image_Editor.start_position[0], var.Image_Editor.start_position[1]]
@@ -33,11 +37,10 @@ def convert_image_to_game():
             converted_game['wall'][row][column] = 0
             
         elif find_void_percentage(img_pieces_pixels) < 20:
-            # Background Mode
-            pass
+            determine_block(img_pieces_pixels)
 
         else:
-            # Object Mode
+            determine_thing(img_pieces_pixels)
             pass
 
     var.Game.data_level = json.loads(json.dumps(converted_game))
@@ -69,5 +72,8 @@ def find_void_percentage(img_pixels):
 
     return(num_of_void_pixels / num_of_pixels * 100)
 
-def determine_image(img_piece):
+def determine_block(img_piece):
+    pass
+
+def determine_thing(img_piece):
     pass

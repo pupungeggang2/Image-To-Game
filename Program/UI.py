@@ -117,6 +117,8 @@ class Load_Window():
 
 class Game():
     status_text = [8, 4]
+    coin_icon = [0, 40]
+    coin_text = [48, 44]
     play_button = [580, 0, 40, 40]
     pause_button = [620, 0, 40, 40]
     stop_button = [660, 0, 40, 40]

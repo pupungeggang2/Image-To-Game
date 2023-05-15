@@ -2,6 +2,7 @@ screen = None
 clock = None
 FPS = 60
 msg = {'msg' : '', 'time' : 0}
+game_output = {}
 
 scene = 'edit'
 state = ''
@@ -25,6 +26,7 @@ class Game():
     data_level = {}
     keyboard = {'up' : False, 'down' : False, 'left' : False, 'right' : False}
     data_playing = {}
+    coin = 0
 
 class Load():
     layer = ''

@@ -73,3 +73,13 @@ def player_defeat_check():
         return True
     
     return False
+
+def player_coin_collect():
+    for i in range(len(var.Game.data_playing['thing'])):
+        if var.Game.data_playing['thing'][i][0] == 1 and physics.point_inside_rect(var.Game.data_playing['player_position'][0],var.Game.data_playing['player_position'][1], var.Game.data_playing['thing'][i][1], var.Game.data_playing['thing'][i][2], 40, 40):
+            var.Game.data_playing['thing'].pop(i)
+            var.Game.coin += 1
+            break
+
+def release_input():
+    var.Game.keyboard = {'up' : False, 'down' : False, 'left' : False, 'right' : False}

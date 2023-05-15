@@ -247,6 +247,9 @@ def draw_game_screen_play():
     elif var.state == 'pause':
         var.screen.blit(var.Font.title.render('Paused', False, const.Color.black), UI.Game.status_text)
 
+    var.screen.blit(asset.Img.thing[1], UI.Game.coin_icon)
+    var.screen.blit(var.Font.title.render(str(var.Game.coin), False, const.Color.black), UI.Game.coin_text)
+
     for i in range(15):
         for j in range(20):
             if var.Game.data_playing['block'][i][j] != 0:

@@ -91,3 +91,4 @@ def load_game_file():
     var.Game.data_playing['jump_power'] = -500
     var.Game.data_playing['jump_num'] = 0
     var.Game.data_playing['ground'] = False
+    var.Game.coin = 0
