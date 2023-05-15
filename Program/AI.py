@@ -71,8 +71,6 @@ def make_model_color():
 
     X = df_color[df_color.columns[0:3]]
     y = df_color[df_color.columns[3]]
-    print(X)
-    print(y)
     X_train,X_test,y_train,y_test=train_test_split(X,y,random_state = 289)
 
     logreg_color = LogisticRegression(solver= 'lbfgs',max_iter=400)
