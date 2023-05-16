@@ -1,6 +1,8 @@
 import os
 import pandas as pd
+
 from PIL import Image
+import cv2
 
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
@@ -9,7 +11,6 @@ from sklearn.metrics import confusion_matrix
 from collections import Counter
 
 import json
-
 import pygame
 
 import var
@@ -27,6 +28,14 @@ def AI_init():
 
     df_color = pd.read_csv('Data/color_data.csv')
     df_object = None
+
+    img_temp = cv2.imread('Data/Door002.png')
+    edges = cv2.Canny(img_temp, 40, 40)
+
+    for i in range(len(edges)):
+        for j in range(len(edges[i])):
+            print(edges[i][j], end=" ")
+        print()
 
 def convert_image_to_game():
     var.Game.data_level['start_position'] = [var.Image_Editor.start_position[0], var.Image_Editor.start_position[1]]
