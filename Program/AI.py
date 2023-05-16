@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-
+import numpy as np
 from PIL import Image
 import cv2
 
@@ -10,6 +10,8 @@ from sklearn.metrics import accuracy_score, precision_score,recall_score, f1_sco
 from sklearn.metrics import confusion_matrix
 from skimage.feature import hog
 from skimage.io import imread
+from sklearn.linear_model import SGDClassifier
+from sklearn.preprocessing import StandardScaler, Normalizer
 from collections import Counter
 
 import json
@@ -22,12 +24,13 @@ df_color = None
 df_object = None
 
 logreg_color = None
-SGD_object = None
+sgd_object = None
 
 def AI_init():
     global df_color
     global df_object
     global logreg_color
+    global sgd_object
 
     df_color = pd.read_csv('Data/color_data.csv')
 
@@ -64,7 +67,10 @@ def convert_image_to_game():
                 converted_game['wall'][row][column] = 0
 
         else:
-            determine_thing(img_pieces_pixels)
+            thing = determine_thing(img_pieces_pixels)
+
+            if thing != 0:
+                converted_game['thing'].append([thing, column * 40, row * 40, 0])
 
     var.Game.data_level = json.loads(json.dumps(converted_game))
 
@@ -81,7 +87,7 @@ def make_model_color():
 
 def make_model_object():
     global df_object
-    global SGD_object
+    global sgd_object
 
     images = []
     categories = ['Coin', 'Door', 'Flag', 'Lever']
@@ -94,8 +100,18 @@ def make_model_object():
 
     df_object = pd.DataFrame(images, columns = ['Image', 'Type'])
 
-    X = 123
-    y = 123
+    X = []
+    y = []
+
+    for i in range(len(df_object)):
+        fd, hog_image = hog(df_object['Image'][i], orientations=9, pixels_per_cell=(5, 5), cells_per_block=(2, 2), visualize=True, channel_axis=-1)
+        hog_image = np.ravel(hog_image, order="K")
+        X.append(hog_image)
+        y.append(df_object['Type'][i])
+
+    X_train,X_test,y_train,y_test = train_test_split(X,y,random_state = 289)
+    sgd_object = SGDClassifier(random_state=288, max_iter=1000, tol=1e-3)
+    sgd_object.fit(X_train, y_train)
 
 def determine_block(img_piece):
     global logreg_color
@@ -148,7 +164,31 @@ def determine_block(img_piece):
     return 0
 
 def determine_thing(img_piece):
-    pass
+    global sgd_object
+    img = []
+    temp = []
+    for i in range(len(img_piece)):
+        temp.append(list(img_piece[i]))
+
+        if i % 40 == 39:
+            img.append(temp)
+            temp = []
+
+    fd, hog_image = hog(img, orientations=9, pixels_per_cell=(5, 5), cells_per_block=(2, 2), visualize=True, channel_axis=-1)
+    hog_image = np.ravel(hog_image, order="K")
+    hog_image = [hog_image]
+    result = sgd_object.predict(hog_image)
+
+    if result[0] == 'Coin':
+        return 1
+    elif result[0] == 'Flag':
+        return 2
+    elif result[0] == 'Door':
+        return 3
+    elif result[0] == 'Lever':
+        return 4
+    else:
+        return 0
 
 def slice_image(img, save):
     img_pieces = []
