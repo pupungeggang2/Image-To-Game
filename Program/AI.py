@@ -8,6 +8,8 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, precision_score,recall_score, f1_score
 from sklearn.metrics import confusion_matrix
+from skimage.feature import hog
+from skimage.io import imread
 from collections import Counter
 
 import json
@@ -20,22 +22,17 @@ df_color = None
 df_object = None
 
 logreg_color = None
-logreg_object = None
+SGD_object = None
 
 def AI_init():
     global df_color
     global df_object
+    global logreg_color
 
     df_color = pd.read_csv('Data/color_data.csv')
-    df_object = None
 
-    img_temp = cv2.imread('Data/Door002.png')
-    edges = cv2.Canny(img_temp, 40, 40)
-
-    for i in range(len(edges)):
-        for j in range(len(edges[i])):
-            print(edges[i][j], end=" ")
-        print()
+    make_model_color()
+    make_model_object()
 
 def convert_image_to_game():
     var.Game.data_level['start_position'] = [var.Image_Editor.start_position[0], var.Image_Editor.start_position[1]]
@@ -46,9 +43,6 @@ def convert_image_to_game():
 
     converted_game = json.loads(json.dumps(const.zero_game_file))
     converted_game['start_position'] = [var.Image_Editor.start_position[0], var.Image_Editor.start_position[1]]
-
-    make_model_color()
-    make_model_object()
 
     for i in range(300):
         row = i // 20
@@ -86,7 +80,22 @@ def make_model_color():
     logreg_color.fit(X_train, y_train)
 
 def make_model_object():
-    pass
+    global df_object
+    global SGD_object
+
+    images = []
+    categories = ['Coin', 'Door', 'Flag', 'Lever']
+
+    for category in categories:
+        for i in range(1, 16):
+            directory = 'Data/' + category + '/' + category + '{:0>3}'.format(i) + '.png'
+            image_temp = imread(directory)
+            images.append([image_temp, category])
+
+    df_object = pd.DataFrame(images, columns = ['Image', 'Type'])
+
+    X = 123
+    y = 123
 
 def determine_block(img_piece):
     global logreg_color
@@ -108,6 +117,7 @@ def determine_block(img_piece):
             if duplicate == False:
                 color_pixels.append([0, [color_pixel[0], color_pixel[1], color_pixel[2]]])
 
+    # Ranking Frequency and selecting top 5.
     color_pixels.sort()
     color_pixels.reverse()
 
@@ -123,6 +133,7 @@ def determine_block(img_piece):
     for j in range(len(color_pixels), 5):
         color_top_five.append('None')
 
+    # Answering Algorithm
     if color_top_five[0] == 'Yellow':
         return 3
     elif color_top_five[0] == 'LightBlue':
