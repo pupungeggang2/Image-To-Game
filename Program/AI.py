@@ -10,8 +10,6 @@ from sklearn.metrics import accuracy_score, precision_score,recall_score, f1_sco
 from sklearn.metrics import confusion_matrix
 from skimage.feature import hog
 from skimage.io import imread
-from sklearn.linear_model import SGDClassifier
-from sklearn.preprocessing import StandardScaler, Normalizer
 from collections import Counter
 
 import json
@@ -24,13 +22,13 @@ df_color = None
 df_object = None
 
 logreg_color = None
-sgd_object = None
+logreg_object = None
 
 def AI_init():
     global df_color
     global df_object
     global logreg_color
-    global sgd_object
+    global logreg_object
 
     df_color = pd.read_csv('Data/color_data.csv')
 
@@ -82,12 +80,12 @@ def make_model_color():
     y = df_color[df_color.columns[3]]
     X_train,X_test,y_train,y_test=train_test_split(X,y,random_state = 289)
 
-    logreg_color = LogisticRegression(solver= 'lbfgs',max_iter=400)
+    logreg_color = LogisticRegression(solver= 'lbfgs', max_iter=400)
     logreg_color.fit(X_train, y_train)
 
 def make_model_object():
     global df_object
-    global sgd_object
+    global logreg_object
 
     images = []
     categories = ['Coin', 'Door', 'Flag', 'Lever']
@@ -110,8 +108,8 @@ def make_model_object():
         y.append(df_object['Type'][i])
 
     X_train,X_test,y_train,y_test = train_test_split(X,y,random_state = 289)
-    sgd_object = SGDClassifier(random_state=288, max_iter=1000, tol=1e-3)
-    sgd_object.fit(X_train, y_train)
+    logreg_object = LogisticRegression(solver= 'lbfgs', max_iter=400)
+    logreg_object.fit(X_train, y_train)
 
 def determine_block(img_piece):
     global logreg_color
@@ -164,7 +162,7 @@ def determine_block(img_piece):
     return 0
 
 def determine_thing(img_piece):
-    global sgd_object
+    global logreg_object
     img = []
     temp = []
     for i in range(len(img_piece)):
@@ -177,7 +175,7 @@ def determine_thing(img_piece):
     fd, hog_image = hog(img, orientations=9, pixels_per_cell=(5, 5), cells_per_block=(2, 2), visualize=True, channel_axis=-1)
     hog_image = np.ravel(hog_image, order="K")
     hog_image = [hog_image]
-    result = sgd_object.predict(hog_image)
+    result = logreg_object.predict(hog_image)
 
     if result[0] == 'Coin':
         return 1
