@@ -250,6 +250,11 @@ def draw_game_screen_play():
     var.screen.blit(asset.Img.thing[1], UI.Game.coin_icon)
     var.screen.blit(var.Font.title.render(str(var.Game.coin), False, const.Color.black), UI.Game.coin_text)
 
+    var.screen.blit(var.Font.main.render("ArrowLeft:Left", False, const.Color.black), UI.Game.tutorial_1)
+    var.screen.blit(var.Font.main.render("ArrowLeft:Right", False, const.Color.black), UI.Game.tutorial_2)
+    var.screen.blit(var.Font.main.render("ArrowUp:Interact", False, const.Color.black), UI.Game.tutorial_3)
+    var.screen.blit(var.Font.main.render("Space:Jump", False, const.Color.black), UI.Game.tutorial_4)
+
     for i in range(15):
         for j in range(20):
             if var.Game.data_playing['block'][i][j] != 0:

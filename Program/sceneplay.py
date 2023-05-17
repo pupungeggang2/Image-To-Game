@@ -63,6 +63,9 @@ def key_down(key):
         if key == pygame.K_SPACE:
             game.try_jump()
 
+        if key == pygame.K_UP:
+            game.interact()
+
 def key_up(key):
     if var.state == 'play':
         if key == pygame.K_w or key == pygame.K_UP:

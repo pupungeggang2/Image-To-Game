@@ -1,6 +1,7 @@
 import var
 import const
 import physics
+import random
 
 def player_move():
     temp_position = [var.Game.data_playing['player_position'][0], var.Game.data_playing['player_position'][1]]
@@ -79,6 +80,22 @@ def player_coin_collect():
         if var.Game.data_playing['thing'][i][0] == 1 and physics.point_inside_rect(var.Game.data_playing['player_position'][0],var.Game.data_playing['player_position'][1], var.Game.data_playing['thing'][i][1], var.Game.data_playing['thing'][i][2], 40, 40):
             var.Game.data_playing['thing'].pop(i)
             var.Game.coin += 1
+            break
+
+def interact():
+    doors = []
+
+    for i in range(len(var.Game.data_playing['thing'])):
+        if var.Game.data_playing['thing'][i][0] == 3:
+            doors.append([var.Game.data_playing['thing'][i][1], var.Game.data_playing['thing'][i][2]])
+
+    for i in range(len(var.Game.data_playing['thing'])):
+        if var.Game.data_playing['thing'][i][0] == 3 and physics.point_inside_rect(var.Game.data_playing['player_position'][0],var.Game.data_playing['player_position'][1], var.Game.data_playing['thing'][i][1], var.Game.data_playing['thing'][i][2], 40, 40):
+            random_door = list(range(len(doors)))
+            random_door.pop(i)
+            random_door_selected = random.randint(0, len(random_door) - 1)
+            var.Game.data_playing['player_position'][0] = doors[random_door[random_door_selected]][0]
+            var.Game.data_playing['player_position'][1] = doors[random_door[random_door_selected]][1]
             break
 
 def release_input():
