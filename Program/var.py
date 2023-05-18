@@ -16,7 +16,7 @@ class Image_Editor():
     brush_line_current = [0, 0]
     canvas_mode = 'draw'
     eraser_size = 10
-    layer_selected = 'background'
+    layer_selected = 'object'
     layer = {'background' : None, 'object' : None}
     layer_visible = {'background' : True, 'object' : True, 'white' : True, 'player' : True}
     full_image = None

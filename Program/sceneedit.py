@@ -56,8 +56,9 @@ def mouse_up(x, y, button):
                 var.Image_Editor.layer_visible['background'] = True
                 var.Image_Editor.layer_visible['object'] = True
                 var.Image_Editor.layer_visible['white'] = True
-                var.Image_Editor.layer_visible['player'] = False
+                var.Image_Editor.layer_visible['player'] = True
                 var.Image_Editor.brush_mode = 'draw'
+                var.Image_Editor.layer_selected = 'object'
 
             if physics.point_inside_rect_array(x, y, UI.Upper_Bar.image_save):
                 var.state = 'image_save'
