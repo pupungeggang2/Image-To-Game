@@ -92,3 +92,7 @@ def load_game_file():
     var.Game.data_playing['jump_num'] = 0
     var.Game.data_playing['ground'] = False
     var.Game.coin = 0
+    var.Game.keyboard['up'] = False
+    var.Game.keyboard['left'] = False
+    var.Game.keyboard['down'] = False
+    var.Game.keyboard['right'] = False
