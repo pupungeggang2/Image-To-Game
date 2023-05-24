@@ -29,6 +29,13 @@ def save_image_window_init():
     var.Save.file_name_mode = False
     var.Save.file_list_page = 0
 
+def save_game_file_init():
+    var.Save.current_dir = ''
+    var.Save.current_dir_files = os.listdir('./GameFile/' + var.Save.current_dir)
+    var.Save.file_name_write = ''
+    var.Save.file_name_mode = False
+    var.Save.file_list_page = 0
+
 def layer_load_window_init():
     var.Load.current_dir = ''
     var.Load.current_dir_files = os.listdir('./Input/' + var.Save.current_dir)

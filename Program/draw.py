@@ -230,6 +230,39 @@ def draw_layer_load_window():
 
     pygame.draw.rect(var.screen, const.Color.black, UI.Load_Window.rect, 2)
 
+def draw_game_file_save():
+    # Upper Bar
+    pygame.draw.rect(var.screen, const.Color.white, UI.Save_Window.rect)
+    pygame.draw.rect(var.screen, const.Color.black, UI.Save_Window.title_bar, 2)
+    var.screen.blit(var.Font.title.render('Save', False, const.Color.black), UI.Save_Window.title_text)
+    var.screen.blit(asset.Img.Icon.close, UI.Save_Window.close_button)
+
+    # Directory Bar
+    pygame.draw.rect(var.screen, const.Color.black, UI.Save_Window.directory_bar, 2)
+    var.screen.blit(var.Font.main.render('.../dir/Drawing/' + var.Save.current_dir, False, const.Color.black), UI.Save_Window.directory_text)
+
+    # Center
+    for i in range(20):
+        if var.Save.file_list_page * 20 + i < len(var.Save.current_dir_files):
+            var.screen.blit(var.Font.main.render(var.Save.current_dir_files[var.Save.file_list_page * 20 + i], False, const.Color.black), [UI.Save_Window.file_list[i][0] + 8, UI.Save_Window.file_list[i][1] + 8])
+
+    var.screen.blit(asset.Img.Icon.prev, UI.Save_Window.file_list_prev_button)
+    var.screen.blit(asset.Img.Icon.next, UI.Save_Window.file_list_next_button)
+    var.screen.blit(var.Font.title.render(str(var.Save.file_list_page + 1) + '/' + str((len(var.Save.current_dir_files) - 1) // 20 + 1), False, const.Color.black), UI.Save_Window.file_list_page_text)
+
+    # Lower Bar
+    pygame.draw.rect(var.screen, const.Color.black, UI.Save_Window.lower_text_rect, 2)
+    
+    if var.Save.file_name_mode == True:
+        pygame.draw.rect(var.screen, const.Color.green, UI.Save_Window.lower_text_rect, 2)
+
+    var.screen.blit(var.Font.main.render(var.Save.file_name_write, False, const.Color.black), UI.Save_Window.file_name)
+
+    pygame.draw.rect(var.screen, const.Color.black, UI.Save_Window.save_button, 2)
+    var.screen.blit(var.Font.title.render('Save', False, const.Color.black), UI.Save_Window.save_text)
+
+    pygame.draw.rect(var.screen, const.Color.black, UI.Save_Window.rect, 2)
+
 def draw_upper_bar_play():
     var.screen.blit(asset.Img.Icon.play, UI.Game.play_button)
     var.screen.blit(asset.Img.Icon.pause, UI.Game.pause_button)

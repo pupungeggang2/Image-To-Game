@@ -1,4 +1,5 @@
 import pygame
+import json
 
 import var
 import const
@@ -21,7 +22,10 @@ def display():
     draw.draw_game_screen_edit()
     draw.draw_lower_bar()
 
-    if var.state == 'image_save':
+    if var.state == 'game_file_save':
+        draw.draw_game_file_save()
+
+    elif var.state == 'image_save':
         draw.draw_save_image_window()
 
     elif var.state == 'layer_load':
@@ -60,7 +64,11 @@ def mouse_up(x, y, button):
                 var.Image_Editor.brush_mode = 'draw'
                 var.Image_Editor.layer_selected = 'object'
 
-            if physics.point_inside_rect_array(x, y, UI.Upper_Bar.image_save):
+            if physics.point_inside_rect_array(x, y, UI.Upper_Bar.save):
+                var.state = 'game_file_save'
+                save.save_game_file_init()
+
+            elif physics.point_inside_rect_array(x, y, UI.Upper_Bar.image_save):
                 var.state = 'image_save'
                 save.save_image_window_init()
 
@@ -189,6 +197,31 @@ def mouse_up(x, y, button):
                 if var.Save.file_list_page < len((var.Save.current_dir_files) - 1) // 20 + 1:
                     var.Save.file_list_page += 1
 
+        elif var.state == 'game_file_save':
+            if physics.point_inside_rect_array(x, y, UI.Save_Window.close_button):
+                var.state = ''
+
+            if physics.point_inside_rect_array(x, y, UI.Save_Window.lower_text_rect):
+                if var.Save.file_name_mode == True:
+                    var.Save.file_name_mode = False
+                else:
+                    var.Save.file_name_mode = True
+
+            if physics.point_inside_rect_array(x, y, UI.Save_Window.save_button):
+                if len(var.Save.file_name_write) > 0:
+                    f = open('./GameFile/' + var.Save.current_dir + var.Save.file_name_write + '.img2game', 'w')
+                    f.write(json.dumps(var.Game.data_level))
+                    f.close()
+                    var.state = ''
+
+            if physics.point_inside_rect_array(x, y, UI.Save_Window.file_list_prev_button):
+                if var.Save.file_list_page > 0:
+                    var.Save.file_list_page -= 1
+
+            elif physics.point_inside_rect_array(x, y, UI.Save_Window.file_list_next_button):
+                if var.Save.file_list_page < len((var.Save.current_dir_files) - 1) // 20 + 1:
+                    var.Save.file_list_page += 1
+
         elif var.state == 'layer_load':
             if physics.point_inside_rect_array(x, y, UI.Load_Window.close_button):
                 var.state = ''
@@ -233,6 +266,15 @@ def mouse_motion(x, y):
 
 def key_down(key):
     if var.state == 'image_save':
+        if var.Save.file_name_mode == True:
+            if (key >= 48 and key <= 57) or (key >= 97 and key <= 122):
+                var.Save.file_name_write += chr(key)
+
+            elif key == pygame.K_BACKSPACE:
+                if len(var.Save.file_name_write) > 0:
+                    var.Save.file_name_write = var.Save.file_name_write[:-1]
+
+    elif var.state == 'game_file_save':
         if var.Save.file_name_mode == True:
             if (key >= 48 and key <= 57) or (key >= 97 and key <= 122):
                 var.Save.file_name_write += chr(key)
