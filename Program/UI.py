@@ -127,3 +127,5 @@ class Game():
     pause_button = [620, 0, 40, 40]
     stop_button = [660, 0, 40, 40]
     screen = [240, 40, 800, 600]
+    status_1 = [248, 644]
+    status_2 = [248, 684]

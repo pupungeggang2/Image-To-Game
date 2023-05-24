@@ -300,6 +300,9 @@ def draw_game_screen_play():
 
     pygame.draw.rect(var.screen, const.Color.black, UI.Game.screen, 2)
 
+    var.screen.bilt(var.Font.main.render(), UI.Game.status_1)
+    var.screen.bilt(var.Font.main.render(), UI.Game.status_1)
+
 def convert_color_code_to_hex(color):
     color_code = '#'
     hex_num = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F']
