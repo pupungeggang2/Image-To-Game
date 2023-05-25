@@ -10,6 +10,7 @@ import draw
 
 def loop():
     if var.state == 'play':
+        var.Game.position_previous_frame = [int(var.Game.data_playing['player_position'][0]), int(var.Game.data_playing['player_position'][1])]
         game.player_move()
         game.player_coin_collect()
 
@@ -17,6 +18,7 @@ def loop():
             var.state = 'defeat'
         elif game.player_win_check() == True:
             var.state = 'win'
+        var.Game.position_current_frame = [int(var.Game.data_playing['player_position'][0]), int(var.Game.data_playing['player_position'][1])]
 
     display()
 

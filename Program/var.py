@@ -27,8 +27,8 @@ class Game():
     keyboard = {'up' : False, 'down' : False, 'left' : False, 'right' : False}
     data_playing = {}
     coin = 0
-    position_previous_frame = []
-    position_current_frame = []
+    position_previous_frame = [0, 0]
+    position_current_frame = [0, 0]
 
 class Load():
     layer = ''
