@@ -300,7 +300,7 @@ def draw_game_screen_play():
 
     pygame.draw.rect(var.screen, const.Color.black, UI.Game.screen, 2)
 
-    var.screen.blit(var.Font.main.render('Current Speed : (' + str(var.Game.position_current_frame[0] - var.Game.position_previous_frame[0]) + ',' + str(var.Game.position_current_frame[1] - var.Game.position_previous_frame[1]) + ')', False, const.Color.black), UI.Game.status_1)
+    var.screen.blit(var.Font.main.render('Current Speed : (' + str((var.Game.position_current_frame[0] - var.Game.position_previous_frame[0]) * 60) + ',' + str((var.Game.position_current_frame[1] - var.Game.position_previous_frame[1]) * 60) + ')' + ' Number of Objects : ' + str(len(var.Game.data_playing['thing'])), False, const.Color.black), UI.Game.status_1)
     var.screen.blit(var.Font.main.render('Position : (' + str(int(var.Game.data_playing['player_position'][0])) + ',' + str(int(var.Game.data_playing['player_position'][1])) + ')' + ' Touching Ground : ' + str(var.Game.data_playing['ground']), False, const.Color.black), UI.Game.status_2)
 
 def convert_color_code_to_hex(color):
